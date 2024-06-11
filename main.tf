@@ -168,6 +168,7 @@ resource "aws_security_group" "my-new-security-group" {
   }
 }
 
+#going to use this in the future to create custom s3 names
 resource "random_id" "randomoni" {
   byte_length = 16
 }
