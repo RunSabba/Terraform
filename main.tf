@@ -1,4 +1,4 @@
-# Configure the AWS Provider
+# Configure AWS as Provider
 provider "aws" {
   region = "us-east-1"
 }
@@ -7,7 +7,7 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 data "aws_region" "current" {}
 
-#Define the VPC
+#Defining our VPC
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr
 
