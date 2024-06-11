@@ -126,6 +126,7 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
   subnet_id              = aws_subnet.public_subnets["public_subnet_1"].id
   tags = {
+     name = " RunSabba Cloud"
      APP = local.application
      server_name = local.server_name
      Owner = local.team
