@@ -7,6 +7,12 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 data "aws_region" "current" {}
 
+locals {
+   server_name = "ec2-${var.environment}-api-${var.aws_region}"
+   team = "RunSabba-DEVTeam"
+   application = "Corp-API"
+}
+
 #Defining our VPC
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr
@@ -120,7 +126,9 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
   subnet_id              = aws_subnet.public_subnets["public_subnet_1"].id
   tags = {
-     Name = " RunSabba Ubuntu Server"
+     APP = local.application
+     server_name = local.server_name
+     Owner = local.team
   }
 }
 
