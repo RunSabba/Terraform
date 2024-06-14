@@ -3,10 +3,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-#Retrieve the list of AZs in the current AWS region
-data "aws_availability_zones" "available" {}
-data "aws_region" "current" {}
-
 locals {
    server_name = "ec2-${var.environment}-api-${var.aws_region}"
    team = "RunSabba-DEVTeam"
@@ -21,6 +17,7 @@ resource "aws_vpc" "vpc" {
     Name        = var.vpc_name
     Environment = "demo_environment"
     Terraform   = "true"
+    Region      = data.aws_region.current.name
   }
 }
 
@@ -122,11 +119,11 @@ resource "aws_nat_gateway" "nat_gateway" {
 }
 
 resource "aws_instance" "web" {
-  ami           = var.my-ami
+  ami           = data.aws_ami.redhat_free_tier.id
   instance_type = "t2.micro"
   subnet_id              = aws_subnet.public_subnets["public_subnet_1"].id
   tags = {
-     name = " RunSabba Cloud"
+     Name = " RunSabba Cloud"
      APP = local.application
      server_name = local.server_name
      Owner = local.team
