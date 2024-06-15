@@ -13,7 +13,7 @@ data "aws_ami" "redhat_free_tier" {
 
   filter {
     name   = "name"
-    values = ["RHEL-9.*_HVM-*"]
+    values = ["RHEL-9.*_HVM-*"]  #Redhat flavor to further the scope of the query
   }
 
   filter {
