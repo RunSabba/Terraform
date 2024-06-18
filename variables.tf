@@ -30,13 +30,13 @@ variable "public_subnets" {
 }
 
 variable "my-ami" {
-  type    = string
-  default = "ami-04b70fa74e45c3917"
+  type        = string
+  default     = "ami-04b70fa74e45c3917"
   description = "AMI of the linux distro of my choice"
 }
 
 variable "environment" {
-  type = string
+  type        = string
   description = "Specifiying the APP's running ENV"
-  default = " DEV "
+  default     = " DEV "
 }

@@ -4,9 +4,9 @@ provider "aws" {
 }
 
 locals {
-   server_name = "ec2-${var.environment}-api-${var.aws_region}"
-   team = "RunSabba-DEVTeam"
-   application = "Corp-API"
+  server_name = "ec2-${var.environment}-api-${var.aws_region}"
+  team        = "RunSabba-DEVTeam"
+  application = "Corp-API"
 }
 
 #Defining our VPC
@@ -118,15 +118,15 @@ resource "aws_nat_gateway" "nat_gateway" {
   }
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "web_server" {
   ami           = data.aws_ami.redhat_free_tier.id
   instance_type = "t2.micro"
-  subnet_id              = aws_subnet.public_subnets["public_subnet_1"].id
+  subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
   tags = {
-     Name = " RunSabba Cloud"
-     APP = local.application
-     server_name = local.server_name
-     Owner = local.team
+    Name        = " RunSabba Cloud"
+    APP         = local.application
+    server_name = local.server_name
+    Owner       = local.team
   }
 }
 
