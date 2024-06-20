@@ -21,4 +21,7 @@ crash.*.log
 override.tf
 override.tf.json
 *_override.tf
-*_override.tf.json
+*_override.tf.json*.tfstate
+*.tfstate.backup
+.terraform/
+RunSabbaAWSKey.pem
