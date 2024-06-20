@@ -5,6 +5,7 @@
 *.tfstate
 *.tfstate.*
 
+
 # Crash log files
 crash.log
 crash.*.log
@@ -21,7 +22,9 @@ crash.*.log
 override.tf
 override.tf.json
 *_override.tf
-*_override.tf.json*.tfstate
-*.tfstate.backup
-.terraform/
+*_override.tf.json
+
+# tflock file
+.terraform.lock.hcl
+#ignore ssh key
 RunSabbaAWSKey.pem
