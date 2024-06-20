@@ -170,3 +170,12 @@ resource "aws_security_group" "my-new-security-group" {
 resource "random_id" "randomoni" {
   byte_length = 16
 }
+
+resource "tls_private_key" "generated" {
+  algorithm = "RSA"
+}
+
+resource "local_file" "private_key_pem" {
+  content  = tls_private_key.generated.private_key_pem
+  filename = "RunSabbaAWSKey.pem"
+}
