@@ -24,7 +24,7 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 
-# tflock file
+# Ignore TF dependencies file
 .terraform.lock.hcl
 #ignore ssh key
 RunSabbaAWSKey.pem
