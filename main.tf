@@ -146,7 +146,7 @@ resource "aws_instance" "web_server" {
 
 
   tags = {
-    Name        = " RunSabba Cloud"
+    Name        = "RunSabba Cloud"
     APP         = local.application
     server_name = local.server_name
     Owner       = local.team
