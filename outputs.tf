@@ -19,3 +19,9 @@ output "vpc_information" {
   description = "VPC Information about Environment"
   value       = "Your ${aws_vpc.vpc.tags.Environment} VPC has an ID of ${aws_vpc.vpc.id}"
 }
+
+output "aws_region" {
+  description = "this is will print out the aws region ive created my infrustructure in. this way i know what region ive deployed in."
+  value       = "Your infrustructure has successfully been created in Region ${data.aws_region.current.name}"
+
+}
