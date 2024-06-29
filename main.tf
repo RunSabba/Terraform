@@ -1,6 +1,11 @@
 # Configure AWS as Provider
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
+  default_tags {
+    tags = {
+      Environment = terraform.workspace
+    }
+  }
 }
 
 locals {
@@ -158,7 +163,7 @@ resource "aws_instance" "web_server" {
 
 
 resource "aws_s3_bucket" "my-new-S3-bucket" {
-  bucket = "my-tf-test-bucket-runsabba"
+  bucket = "my-tf-test-bucket-runsabba1017"
 
   tags = {
     Name    = "My S3 Bucket"
