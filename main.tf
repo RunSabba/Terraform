@@ -1,6 +1,6 @@
 # Configure AWS as Provider
 provider "aws" {
-  region = "us-east-1"
+  region = "us-west-2"
 }
 
 locals {
@@ -119,7 +119,7 @@ resource "aws_nat_gateway" "nat_gateway" {
 }
 
 resource "aws_instance" "web_server" {
-  ami                         = var.my-ami
+  ami                         = data.aws_ami.ubuntu_free_tier.id
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public_subnets["public_subnet_1"].id
   security_groups             = [aws_security_group.vpc-ping.id, aws_security_group.ingress-ssh.id, aws_security_group.vpc-web.id, aws_security_group.my-new-security-group.id]
@@ -158,7 +158,7 @@ resource "aws_instance" "web_server" {
 
 
 resource "aws_s3_bucket" "my-new-S3-bucket" {
-  bucket = "my-tf-test-bucket-abbasnur"
+  bucket = "my-tf-test-bucket-runsabba"
 
   tags = {
     Name    = "My S3 Bucket"

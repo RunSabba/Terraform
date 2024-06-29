@@ -7,13 +7,13 @@ data "aws_region" "current" {}
 
 #retrieve a free tier rhel server by using data filters. 
 
-data "aws_ami" "redhat_free_tier" {
+data "aws_ami" "ubuntu_free_tier" {
   most_recent = true
-  owners      = ["309956199498"] #Redhat aws account ID
+  owners      = ["099720109477"] #Redhat aws account ID
 
   filter {
     name   = "name"
-    values = ["RHEL-9.*_HVM-*"] #Redhat flavor to further the scope of the query
+    values = ["ubuntu/images/hvm-ssd/ubuntu-*-20.04-amd64-server-*"] #ubuntu flavor to further the scope of the query
   }
 
   filter {
