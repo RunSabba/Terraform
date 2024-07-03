@@ -29,7 +29,7 @@ variable "public_subnets" {
   }
 }
 
-variable "my-ami" {
+variable "my-ami-redhat" {
   type        = string
   default     = "ami-04b70fa74e45c3917"
   description = "AMI of the linux distro of my choice"
