@@ -13,7 +13,7 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = var.security_groups
 
   tags = {
-    "Name"        = "Server from Module"
+    "Name"        = "RunSabba Module"
     "Environment" = "Training"
   }
 }
