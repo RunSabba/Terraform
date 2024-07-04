@@ -41,7 +41,7 @@ resource "aws_instance" "web" {
   }
 
   tags = {
-    "Name"        = "Web Server from Module"
+    "Name"        = "RunSabba Webserver Module"
     "Environment" = "Training"
   }
 
