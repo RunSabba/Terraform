@@ -379,7 +379,7 @@ module "github_autoscaling" {
   instance_type = "t2.micro"
 
   tags_as_map = {
-    Name = "ASG Servers from Github"
+    Name = "ASG Servers from Github Repo"
   }
 }
 
