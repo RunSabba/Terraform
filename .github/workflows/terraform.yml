@@ -23,9 +23,21 @@ jobs:
           terraform_version: 1.0.0
 
       - name: 'Terraform Init'
+        working-directory: ./  # Adjust to the root directory of your Terraform project
         run: terraform init
 
       - name: 'Terraform Plan'
+        working-directory: ./  # Adjust to the root directory of your Terraform project
         run: terraform plan
+
+      # Add more steps as needed, such as applying changes
+      # Example:
+      # - name: 'Terraform Apply'
+      #add if github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   working-directory: ./
+      #   run: terraform apply -auto-approve
+
+      # Example outputs (adjust paths and names as
+
 
 
