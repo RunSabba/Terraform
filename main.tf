@@ -296,6 +296,7 @@ resource "aws_security_group" "vpc-ping" {
 module "server" {
   source    = "./modules/server"
   ami       = data.aws_ami.ubuntu_free_tier.id
+  size      = "t2.micro"
   subnet_id = aws_subnet.public_subnets["public_subnet_3"].id
   security_groups = [
     aws_security_group.vpc-ping.id,
@@ -326,11 +327,11 @@ module "module_web_server" {
 }
 
 output "web_server_public_ip" {
-  value = module.module_web_server.public_ip  
+  value = module.module_web_server.public_ip
 }
 
 output "web_server_public_dns" {
-value = module.module_web_server.public_dns  
+  value = module.module_web_server.public_dns
 }
 
 /*module "autoscaling" {
@@ -359,17 +360,17 @@ value = module.module_web_server.public_dns
   }
 */
 module "github_autoscaling" {
-  source  = "github.com/terraform-aws-modules/terraform-aws-autoscaling?ref=v4.9.0" #i had to reference a version that would accept my arguments below
+  source = "github.com/terraform-aws-modules/terraform-aws-autoscaling?ref=v4.9.0" #i had to reference a version that would accept my arguments below
 
   # Autoscaling group
   name = "myasg"
 
-  vpc_zone_identifier = [aws_subnet.private_subnets["private_subnet_1"].id, 
-  aws_subnet.private_subnets["private_subnet_2"].id, 
+  vpc_zone_identifier = [aws_subnet.private_subnets["private_subnet_1"].id,
+    aws_subnet.private_subnets["private_subnet_2"].id,
   aws_subnet.private_subnets["private_subnet_3"].id]
-  min_size            = 0
-  max_size            = 2
-  desired_capacity    = 2
+  min_size         = 0
+  max_size         = 2
+  desired_capacity = 2
 
   # Launch template
   use_lt    = true
@@ -387,5 +388,5 @@ output "auto_scaling_azs" {
   value = module.github_autoscaling.autoscaling_group_availability_zones
 }
 output "asg_id" {
-  value = module.github_autoscaling.autoscaling_group_id 
+  value = module.github_autoscaling.autoscaling_group_id
 }
