@@ -29,12 +29,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1 
 
-      - name: 'List directory contents'
-        run: ls -al
-
-      - name: 'List modules directory contents'
-        run: ls -al modules/
-
       - name: 'Terraform Init'
         working-directory: ./
         run: terraform init
@@ -42,3 +36,4 @@ jobs:
       - name: 'Terraform Plan'
         working-directory: ./
         run: terraform plan
+
