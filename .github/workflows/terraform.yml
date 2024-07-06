@@ -22,18 +22,26 @@ jobs:
         with:
           terraform_version: 1.0.0
 
-      - name: 'Configure AWS Credentials'
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1 
+          aws-region: us-east-1
+
+      - name: List root directory contents
+        run: ls -al
+
+      - name: List modules directory contents
+        run: ls -al modules
+
+      - name: List server directory contents
+        run: ls -al modules/server
 
       - name: 'Terraform Init'
-        working-directory: ./
+        working-directory: ./  
         run: terraform init
 
       - name: 'Terraform Plan'
-        working-directory: ./
+        working-directory: ./ 
         run: terraform plan
-
