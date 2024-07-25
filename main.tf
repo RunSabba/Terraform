@@ -328,31 +328,6 @@ output "web_server_public_dns" {
   value = module.module_web_server.public_dns
 }
 
-/*module "autoscaling" {
-  source  = "terraform-aws-modules/autoscaling/aws"
-  version = "4.9.0"
-
-  # Autoscaling group
-  name = "myasg"
-
-  vpc_zone_identifier = [aws_subnet.private_subnets["private_subnet_1"].id, 
-  aws_subnet.private_subnets["private_subnet_2"].id, 
-  aws_subnet.private_subnets["private_subnet_3"].id]
-  min_size            = 0
-  max_size            = 2
-  desired_capacity    = 2
-
-  # Launch template
-  use_lt    = true
-  create_lt = true
-
-  image_id      = data.aws_ami.ubuntu_free_tier.id
-  instance_type = "t2.micro"
-
-  tags_as_map = {
-    Name = "ASG Servers"
-  }
-*/
 module "github_autoscaling" {
   source = "github.com/terraform-aws-modules/terraform-aws-autoscaling?ref=v4.9.0" #i had to reference a version that would accept my arguments below
 
@@ -383,4 +358,38 @@ output "auto_scaling_azs" {
 }
 output "asg_id" {
   value = module.github_autoscaling.autoscaling_group_id
+}
+
+output "ebs_type" {
+  value = module.server.ebs_type
+}
+
+module "autoscaling" {
+  source  = "terraform-aws-modules/autoscaling/aws"
+  version = "4.9.0"
+
+  # Autoscaling group
+  name = "myasg"
+
+  vpc_zone_identifier = [aws_subnet.private_subnets["private_subnet_1"].id,
+    aws_subnet.private_subnets["private_subnet_2"].id,
+  aws_subnet.private_subnets["private_subnet_3"].id]
+  min_size         = 0
+  max_size         = 1
+  desired_capacity = 1
+
+  # Launch template
+  use_lt    = true
+  create_lt = true
+
+  image_id      = data.aws_ami.ubuntu_free_tier.id
+  instance_type = "t2.micro"
+
+  tags_as_map = {
+    Name = "ASG Servers"
+  }
+}
+
+output "autoscalingARN" {
+  value = module.autoscaling.autoscaling_group_arn
 }

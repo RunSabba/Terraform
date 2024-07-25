@@ -1,4 +1,12 @@
 terraform {
+  backend "s3" {
+    bucket = "runsabba-tf-state"
+    key    = "prod/aws_infra"
+    region = "us-east-1"
+    #enabling state locking here for terraform applies
+    #dynamodb_table = "terraform-lock"
+    #encrypt = true
+  }
   required_version = ">= 1.0.0"
   required_providers {
     aws = {
