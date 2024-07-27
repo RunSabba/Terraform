@@ -360,9 +360,7 @@ output "asg_id" {
   value = module.github_autoscaling.autoscaling_group_id
 }
 
-output "ebs_type" {
-  value = module.server.ebs_type
-}
+
 
 module "autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
