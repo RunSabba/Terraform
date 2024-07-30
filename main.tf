@@ -12,6 +12,15 @@ locals {
   server_name = "ec2-${var.environment}-api-${var.aws_region}"
   team        = "RunSabba-DEVTeam"
   application = "Corp-API"
+  nickname    = "haji-bisbaas"
+}
+locals {
+  common_tags = {
+    Name     = local.server_name
+    Owner    = local.team
+    App      = local.application
+    Nickname = local.nickname
+  }
 }
 
 #Defining our VPC
@@ -150,12 +159,8 @@ resource "aws_instance" "web_server" {
   }
 
 
-  tags = {
-    Name        = "RunSabba Cloud"
-    APP         = local.application
-    server_name = local.server_name
-    Owner       = local.team
-  }
+  tags = local.common_tags
+  
   lifecycle {
     ignore_changes = [security_groups]
   }
