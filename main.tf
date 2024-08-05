@@ -396,3 +396,8 @@ module "autoscaling" {
 output "autoscalingARN" {
   value = module.autoscaling.autoscaling_group_arn
 }
+
+output "secretexmple" {
+  value = var.secretexmple
+  sensitive = true
+}
