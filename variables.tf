@@ -38,12 +38,18 @@ variable "my-ami-redhat" {
 variable "environment" {
   type        = string
   description = "Specifiying the APP's running ENV"
-  default     = " DEV "
+  default     = "dev"
 }
 
-variable "secretexmple" {
-  type = string
-  sensitive = true
-  
-  
+variable "us-east-az-list" {
+  type    = list(string)
+  default = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d", "us-east-1e"]
 }
+
+variable "cidr_blocks" {
+  type = map(string)
+  default = {
+    dev  = "10.0.150.0/24"
+    prod = "10.0.250.0/24"
+  }
+}  
