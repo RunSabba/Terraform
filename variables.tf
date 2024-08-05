@@ -40,3 +40,10 @@ variable "environment" {
   description = "Specifiying the APP's running ENV"
   default     = " DEV "
 }
+
+variable "secretexmple" {
+  type = string
+  sensitive = true
+  
+  
+}
