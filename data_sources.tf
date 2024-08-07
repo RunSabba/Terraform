@@ -29,3 +29,7 @@ data "aws_ami" "ubuntu_free_tier" {
     values = ["x86_64"]
   }
 }
+
+data "aws_s3_bucket" "runsabba-bucket"{
+  bucket = "runsabba-cloud-bkt"
+}
